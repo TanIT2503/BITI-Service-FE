@@ -7,17 +7,16 @@ const AuthModal = () => {
     const handlerSubmit = () => {
         let options = {
             method: 'POST',
-            headers:{
-                'Content-Type' : 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(authFormData)
         };
-        let signInAPI = "http://localhost:9000/authorize/signIn";
+        let signInAPI = "http://localhost:6001/authorize/signIn";
         fetch(signInAPI, options)
         .then(res => {
             if(res.status === 200){
                 alert("Đăng nhập thành công");
-
             }
         })
         .catch(() => {
