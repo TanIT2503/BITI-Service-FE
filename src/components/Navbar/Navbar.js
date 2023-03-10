@@ -4,7 +4,7 @@ const AuthModal = () => {
     const [authFormData, setAuthFormData] = useState({userName: '' , password: ''});
 
     
-    const handlerSubmit = () => {
+    const handlerSubmit = async () => {
         let options = {
             method: 'POST',
             headers: {
@@ -12,15 +12,15 @@ const AuthModal = () => {
             },
             body: JSON.stringify(authFormData)
         };
-        let signInAPI = "http://localhost:6001/authorize/signIn";
-        fetch(signInAPI, options)
+        let signInAPI = "http://localhost:9000/authorize/signIn";
+        await fetch(signInAPI, options)
         .then(res => {
             if(res.status === 200){
                 alert("Đăng nhập thành công");
             }
         })
         .catch(() => {
-            alert("Đăng nhập thất bại");
+           alert("Đăng nhập thất bại");
         })
     }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable jsx-a11y/alt-text */
 
 const Create = () => {
@@ -27,11 +28,64 @@ const Create = () => {
                     <div className="mb-6">
                         <label for="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+=======
+import { useEffect } from "react";
+import { useState } from "react";
+
+const categoriesListAPI = "http://localhost:8080/product-service/category/list";
+
+const Create = () => {
+    const [categories, setCatogeries] = useState([]);
+
+    useEffect(() => { 
+        fetch(categoriesListAPI)
+        .then(res => res.json())
+        .then(items => {
+            setCatogeries(items);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, [])
+
+
+
+    return (
+        <section>
+            <div class="flex align-middle justify-center m-10">
+                <div class="container border rounded-xl justify-center p-10 align-middle">
+                    <div class="mb-6">
+                        <label for="productName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
+                        <input type="text" id="productName" name="productName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product name" required />
+                    </div>
+                    <div class="mb-6">
+                        <label for="productDescriptions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
+                        <input type="text" id="productDescriptions" name="productDescriptions" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descriptions" required />
+                    </div>
+                    <div class="mb-6">
+                        <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantity" required />
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                        <input type="text" id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Location" required />
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                        <select id="ProductCategoryId" name="productCategoryId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+>>>>>>> 3efc6bf7f756b5fa049be634294d297c9a85b851
                             <option selected></option>
-                            <option value="US">United States</option>
+                            {
+                                categories.map( category => (                    
+                                 <option value={category.id}>{category.categoryName}</option>
+                                ))
+                            }
+                            {/* <option value="US">United States</option>
                             <option value="CA">Canada</option>
                             <option value="FR">France</option>
-                            <option value="DE">Germany</option>
+                            <option value="DE">Germany</option> */}
                         </select>
                     </div>
 
