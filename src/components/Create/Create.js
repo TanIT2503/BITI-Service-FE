@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-/* eslint-disable jsx-a11y/alt-text */
-
-const Create = () => {
-    return (
-        <section>
-
-            <div className="flex align-middle justify-center m-10">
-                <div className="container border rounded-xl justify-center p-10 align-middle">
-                    <div className="mb-6">
-                        <label for="product_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
-                        <input type="text" id="product_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product name" required />
-                    </div>
-                    <div className="mb-6">
-                        <label for="descriptions" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
-                        <input type="text" id="descriptions" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descriptions" required />
-                    </div>
-                    <div className="mb-6">
-                        <label for="quatity" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quatity</label>
-                        <input type="number" id="quatity" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quatity" required />
-                    </div>
-
-                    <div className="mb-6">
-                        <label for="location" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-                        <input type="text" id="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Location" required />
-                    </div>
-
-                    <div className="mb-6">
-                        <label for="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        <select id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-=======
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -75,7 +44,6 @@ const Create = () => {
                     <div class="mb-6">
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select id="ProductCategoryId" name="productCategoryId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
->>>>>>> 3efc6bf7f756b5fa049be634294d297c9a85b851
                             <option selected></option>
                             {
                                 categories.map( category => (                    
