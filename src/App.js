@@ -15,6 +15,7 @@ function App() {
                 <Route path="/" element={<List />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/detail" element={<Detail />} />
+                <Route path="/update" element={<Update />} />
                 {/* <List /> */}
                 {/* <Create /> */}
                 {/* <Update /> */}

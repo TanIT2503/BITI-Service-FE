@@ -6,30 +6,31 @@ import { Link } from "react-router-dom";
 
 const List = () => {
     const [payload, setPayload] = useState([]);
-    const [id, setId] = useState(
-        {
-            productName: '',
-            productDescriptions: '',
-            quantity: '',
-            location: '',
-            productCategoriesId: '',
-            active: 'STILL',
-            imageName: '',
-        }
-    )
+    const fetchData = async () => {
+        const result = await axios(
+            "http://localhost:6002/product-service/product?page=0&size=5&sort=asc"
+        );
+        setPayload(result.data.content);
+    };
+
+
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                "http://localhost:6002/product-service/product?page=0&size=5&sort=asc"
-            );
-            setPayload(result.data.content);
-        };
         fetchData();
     }, []);
-    console.log(payload);
+
+
+    const [products, setProducts] = useState([]);
+    const removeProduct = async (id) => {
+        await fetch(`http://localhost:6002/product-service/product-delete/${id}`, {
+            method: 'GET',
+        });
+        const updatedProducts = products.filter((product) => product.id !== id);
+        setProducts(updatedProducts);
+        fetchData();
+    };
 
     return (
-
+        <>
         <div>
             <div className="flex align-middle justify-center m-10">
                 <div className="container flex justify-between">
@@ -58,7 +59,8 @@ const List = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {payload.map((item) => (
+                                {/* chỗ này làm như vậy hoặc có thể viết như này */}
+                                {!!payload?.length && payload.map((item) => (
                                 <tr key={item.id}
                                     className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -83,14 +85,14 @@ const List = () => {
                                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
 
                                         >
-                                            <Link to={`/update/${item.id}`}>Update</Link>
+                                                <Link to={`/create?id=${item.id}`}>Update</Link>
                                         </div>
                                     </td>
                                     <td align="center" className="px-6 py-4">
                                         <div
                                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         >
-                                            Delete
+                                                <button onClick={() => removeProduct(item.id)}>Xoá</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -99,7 +101,10 @@ const List = () => {
                     </table>
                 </div>
             </div>
+
         </div>
+
+        </>
     );
 };
 export default List;
