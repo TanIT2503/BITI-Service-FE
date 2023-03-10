@@ -8,19 +8,31 @@ const urlParams = new URLSearchParams(queryString);
 
 const List = () => {
     const [payload, setPayload] = useState([]);
+    const fetchData = async () => {
+        const result = await axios(
+            "http://localhost:6002/product-service/product?page=0&size=5&sort=asc"
+        );
+        setPayload(result.data.content);
+    };
+
+
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                "http://localhost:8080/product-service/product?page=0&size=5&sort=asc"
-            );
-            setPayload(result.data.content);
-        };
         fetchData();
     }, []);
-    console.log(payload);
+
+
+    const [products, setProducts] = useState([]);
+    const removeProduct = async (id) => {
+        await fetch(`http://localhost:6002/product-service/product-delete/${id}`, {
+            method: 'GET',
+        });
+        const updatedProducts = products.filter((product) => product.id !== id);
+        setProducts(updatedProducts);
+        fetchData();
+    };
 
     return (
-
+        <>
         <div>
             <div className="flex align-middle justify-center m-10">
                 <div className="container flex justify-between">
@@ -29,8 +41,7 @@ const List = () => {
                     </h1>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         <Link to="/create">Create</Link>
-                    </button>
-
+                        </button>
                 </div>
             </div>
             <div className="flex align-middle justify-center m-10">
@@ -43,13 +54,14 @@ const List = () => {
                                 <th className="px-6 py-3">Quatity</th>
                                 <th className="px-6 py-3">Location</th>
                                 <th className="px-6 py-3">Category</th>
-                                <th align="center" className="px-6 py-3" colSpan="2">
+                                    <th align="center" className="px-6 py-3" colSpan="3">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {payload.map((item) => (
+                                {/* chỗ này làm như vậy hoặc có thể viết như này */}
+                                {!!payload?.length && payload.map((item) => (
                                 <tr key={item.id}
                                     className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -71,8 +83,7 @@ const List = () => {
                                     </td>
                                     <td align="center" className="px-6 py-4">
                                         <div
-                                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-
+                                                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         >
                                             <Link to={`/create?id=${item.id}`}>Update</Link>
                                         </div>
@@ -81,7 +92,7 @@ const List = () => {
                                         <div
                                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         >
-                                            Delete
+                                                <button onClick={() => removeProduct(item.id)}>Xoá</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -90,7 +101,10 @@ const List = () => {
                     </table>
                 </div>
             </div>
+
         </div>
+
+        </>
     );
 };
 export default List;
