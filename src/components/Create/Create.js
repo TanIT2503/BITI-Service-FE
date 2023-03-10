@@ -3,33 +3,33 @@ import { useState } from "react";
 
 
 
-const categoriesListAPI = "http://localhost:8080/product-service/category/list";
-const createProductAPI = "http://localhost:8080/product-service/create";
+const categoriesListAPI = "http://localhost:6002/product-service/category/list";
+const createProductAPI = "http://localhost:6002/product-service/create";
 
 const Create = () => {
     const [categories, setCatogeries] = useState([]);
     const [imageData, setImageData] = useState("");
     const [product, setProduct] = useState(
         {
-        productName: '', 
-        productDescriptions: '', 
-        quantity: '', 
-        location: '',
-        productCategoriesId: '',
-        active: 'STILL',
-        imageName: '',
+            productName: '',
+            productDescriptions: '',
+            quantity: '',
+            location: '',
+            productCategoriesId: '',
+            active: 'STILL',
+            imageName: '',
         }
-        )
+    )
 
-    useEffect( () => { 
+    useEffect(() => {
         fetch(categoriesListAPI)
-        .then(res => res.json())
-        .then(items => {
-            setCatogeries(items);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(res => res.json())
+            .then(items => {
+                setCatogeries(items);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }, [])
 
     console.log(product);
@@ -39,13 +39,13 @@ const Create = () => {
         for (let i = 0; i < files.length; i++) {
             setImageData(files[i]);
         }
-        setProduct({...product,imageName: files[0].name})       
+        setProduct({ ...product, imageName: files[0].name })
     }
 
 
     const handleSubmitForm = async () => {
         const payload = new FormData();
-        payload.append('image',imageData);
+        payload.append('image', imageData);
         let optionsUpload = {
             method: 'POST',
             body: payload
@@ -57,21 +57,21 @@ const Create = () => {
             },
             body: JSON.stringify(product)
         };
-        await fetch("http://localhost:8080/product-service/upload",optionsUpload)
-        .then(res => {
-            if(res.status === 200){
-                console.log("Upload thành công")
-            }
-        })
-        .catch( ()=> alert("Something went wrong!"));
+        await fetch("http://localhost:6002/product-service/upload", optionsUpload)
+            .then(res => {
+                if (res.status === 200) {
+                    console.log("Upload thành công")
+                }
+            })
+            .catch(() => alert("Something went wrong!"));
 
         await fetch(createProductAPI, options)
-        .then(res => {
-            if(res.status === 200){
-                alert("Thêm thành công");
-            }
-        })
-        .catch( ()=> alert("Something went wrong!"));
+            .then(res => {
+                if (res.status === 200) {
+                    alert("Thêm thành công");
+                }
+            })
+            .catch(() => alert("Something went wrong!"));
     }
 
 
@@ -82,29 +82,29 @@ const Create = () => {
                 <div class="container border rounded-xl justify-center p-10 align-middle">
                     <div class="mb-6">
                         <label for="productName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
-                        <input type="text" id="productName" name="productName" value={product.productName} onChange = {e=> setProduct({...product,productName: e.target.value})} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product name" required />
+                        <input type="text" id="productName" name="productName" value={product.productName} onChange={e => setProduct({ ...product, productName: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product name" required />
                     </div>
                     <div class="mb-6">
                         <label for="productDescriptions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
-                        <input type="text" id="productDescriptions" name="productDescriptions" onChange = {e=> setProduct({...product, productDescriptions: e.target.value})} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descriptions" required />
+                        <input type="text" id="productDescriptions" name="productDescriptions" onChange={e => setProduct({ ...product, productDescriptions: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descriptions" required />
                     </div>
                     <div class="mb-6">
                         <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                        <input type="number" id="quantity" name="quantity" onChange = {e=> setProduct({...product, quantity: e.target.value})} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantity" required />
+                        <input type="number" id="quantity" name="quantity" onChange={e => setProduct({ ...product, quantity: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantity" required />
                     </div>
 
                     <div class="mb-6">
                         <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-                        <input type="text" id="location" name="location" onChange = {e=> setProduct({...product, location: e.target.value})} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Location" required />
+                        <input type="text" id="location" name="location" onChange={e => setProduct({ ...product, location: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Location" required />
                     </div>
 
                     <div class="mb-6">
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        <select id="productCategoriesId" name="productCategoriesId" onChange={e=> setProduct({...product, productCategoriesId: e.target.value})} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="productCategoriesId" name="productCategoriesId" onChange={e => setProduct({ ...product, productCategoriesId: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected></option>
                             {
-                                categories.map( category => (                    
-                                 <option value={category.id}>{category.categoryName}</option>
+                                categories.map(category => (
+                                    <option value={category.id}>{category.categoryName}</option>
                                 ))
                             }
                             {/* <option value="US">United States</option>
@@ -113,22 +113,21 @@ const Create = () => {
                             <option value="DE">Germany</option> */}
                         </select>
                     </div>
-                        <div class=" m-6">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <img src={imageData == "" ? "https://cdn.questionpro.com/userimages/site_media/no-image.png" : URL.createObjectURL(imageData)}/>
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <div class="m-6 flex justify-center">
+                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-96 h-96 first-letter: border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <img className="w-80 h-80" src={imageData == "" ? "https://vnpi-hcm.vn/wp-content/uploads/2018/01/no-image-800x600.png" : URL.createObjectURL(imageData)} />
+                            {/* <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                                </div>
-                                <input onChange={handleGetImage} id="dropzone-file" name="image" type="file" class="hidden" />
-                            </label>
-                        </div>
-                        <div class="m-6 flex justify-center align-middle space-x-5">
-                            <button type="button" onClick={handleSubmitForm} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
-                            <button class="text-black font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Cancel</button>
-                        </div>
-
+                                </div> */}
+                            <input onChange={handleGetImage} id="dropzone-file" name="image" type="file" class="hidden" />
+                        </label>
+                    </div>
+                    <div class="m-6 flex justify-center align-middle space-x-5">
+                        <button type="button" onClick={handleSubmitForm} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+                        <button class="text-black font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Cancel</button>
+                    </div>
                 </div>
             </div>
 
