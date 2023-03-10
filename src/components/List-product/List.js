@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
 
 
 const List = () => {
@@ -9,7 +12,7 @@ const List = () => {
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
-                "http://localhost:6002/product-service/product?page=0&size=5&sort=asc"
+                "http://localhost:8080/product-service/product?page=0&size=5&sort=asc"
             );
             setPayload(result.data.content);
         };
@@ -47,13 +50,13 @@ const List = () => {
                                     {item.productCategories.categoryName}
                                 </td>
                                 <td align="center" className="px-6 py-4">
-                                    <a
-                                        href="#"
+                                    <div
+                                        
                                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
 
                                     >
-                                        Edit
-                                    </a>
+                                        <Link to= {`/create?id=${item.id}`}>Update</Link>
+                                    </div>
                                 </td>
                                 <td align="center" className="px-6 py-4">
                                     <a
