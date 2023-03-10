@@ -7,11 +7,16 @@ import Update from './components/Update/Update';
 
 function App() {
     return (
-        // <Navbar />
-        <List />
-        // <Create />
-        // <Update />
+        <>
+            <Navbar />
+            <List />
+            <Create />
+            <Update />
+        </>
+
     );
+
+
 }
 
 export default App;
