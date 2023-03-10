@@ -82,25 +82,25 @@ const Create = () => {
             <div class="flex align-middle justify-center m-10">
                 <div class="container border rounded-xl justify-center p-10 align-middle">
                     <div class="mb-6">
-                        <label for="productName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
+                        <label htmlFor="productName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
                         <input type="text" id="productName" name="productName" value={product.productName} onChange={e => setProduct({ ...product, productName: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product name" required />
                     </div>
                     <div class="mb-6">
-                        <label for="productDescriptions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
+                        <label htmlFor="productDescriptions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
                         <input type="text" id="productDescriptions" name="productDescriptions" onChange={e => setProduct({ ...product, productDescriptions: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descriptions" required />
                     </div>
                     <div class="mb-6">
-                        <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <label htmlFor="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
                         <input type="number" id="quantity" name="quantity" onChange={e => setProduct({ ...product, quantity: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantity" required />
                     </div>
 
                     <div class="mb-6">
-                        <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                        <label htmlFor="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
                         <input type="text" id="location" name="location" onChange={e => setProduct({ ...product, location: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Location" required />
                     </div>
 
                     <div class="mb-6">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                        <label htmlFor="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select id="productCategoriesId" name="productCategoriesId" onChange={e => setProduct({ ...product, productCategoriesId: e.target.value })} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected></option>
                             {
@@ -115,7 +115,7 @@ const Create = () => {
                         </select>
                     </div>
                     <div class="m-6 flex justify-center">
-                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-96 h-96 first-letter: border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <label htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-96 h-96 first-letter: border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <img className="w-80 h-80 object-cover" src={imageData == "" ? "https://vnpi-hcm.vn/wp-content/uploads/2018/01/no-image-800x600.png" : URL.createObjectURL(imageData)} />
                             {/* <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>

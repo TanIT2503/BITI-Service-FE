@@ -39,8 +39,7 @@ const List = () => {
                     </h1>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         <Link to="/create">Create</Link>
-                    </button>
-
+                        </button>
                 </div>
             </div>
             <div className="flex align-middle justify-center m-10">
@@ -53,7 +52,7 @@ const List = () => {
                                 <th className="px-6 py-3">Quatity</th>
                                 <th className="px-6 py-3">Location</th>
                                 <th className="px-6 py-3">Category</th>
-                                <th align="center" className="px-6 py-3" colSpan="2">
+                                    <th align="center" className="px-6 py-3" colSpan="3">
                                     Action
                                 </th>
                             </tr>
@@ -82,8 +81,7 @@ const List = () => {
                                     </td>
                                     <td align="center" className="px-6 py-4">
                                         <div
-                                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-
+                                                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         >
                                                 <Link to={`/create?id=${item.id}`}>Update</Link>
                                         </div>
