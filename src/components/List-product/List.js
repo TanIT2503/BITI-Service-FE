@@ -8,17 +8,6 @@ const urlParams = new URLSearchParams(queryString);
 
 const List = () => {
     const [payload, setPayload] = useState([]);
-    const [id, setId] = useState(
-        {
-            productName: '',
-            productDescriptions: '',
-            quantity: '',
-            location: '',
-            productCategoriesId: '',
-            active: 'STILL',
-            imageName: '',
-        }
-    )
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
@@ -85,7 +74,7 @@ const List = () => {
                                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
 
                                         >
-                                            <Link to={`/update/${item.id}`}>Update</Link>
+                                            <Link to={`/create?id=${item.id}`}>Update</Link>
                                         </div>
                                     </td>
                                     <td align="center" className="px-6 py-4">
